@@ -32,4 +32,11 @@ public class Config {
         return new Person();
     }
 
+    @Bean(name = "helloMessageGenerator1")
+    @Scope(value = WebApplicationContext.SCOPE_REQUEST , proxyMode = ScopedProxyMode.TARGET_CLASS) //instead
+    //@RequestScope
+    public HelloMessageGenerator getHelloMessageGenerator(){
+        return new HelloMessageGenerator();
+    }
+
 }
