@@ -1,7 +1,6 @@
 package com.example.Test;
 
 import config.Config;
-import domain.Address;
 import domain.Company;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +14,7 @@ public class TestApplication {
 		SpringApplication.run(TestApplication.class, args);
 
 		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(Config.class);
-		Company company = applicationContext.getBean("company", Company.class);
+		Company company = applicationContext.getBean("companyy", Company.class);
 		System.out.println(company.getAddress().getName()+"	"+company.getAddress().getNumber());
 
 	}

@@ -3,7 +3,7 @@ package domain;
 import lombok.Getter;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("companyy")
 @Getter
 public class Company {
 
