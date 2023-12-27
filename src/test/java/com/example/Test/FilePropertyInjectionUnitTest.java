@@ -58,6 +58,9 @@ public class FilePropertyInjectionUnitTest {
     @Value("${bar}")
     private String bar;
 
+    @Value("${my.website.name}")
+    private String myWebsiteName;
+
     @Test
     public void test(){
         System.out.println(foo);
@@ -71,6 +74,11 @@ public class FilePropertyInjectionUnitTest {
         System.out.println(valuesMapFiltered);
         System.out.println(fieldByDefaultValue);
         System.out.println(bar);
+    }
+
+    @Test
+    public void test2(){
+        System.out.println(myWebsiteName);
     }
 
 }
