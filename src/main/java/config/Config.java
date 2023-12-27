@@ -1,16 +1,20 @@
 package config;
 
-import domain.Address;
-import domain.Company;
-import domain.HelloMessageGenerator;
-import domain.Person;
+import domain.*;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.*;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.annotation.RequestScope;
 
 @Configuration
-@ComponentScan(basePackageClasses = Company.class)
+//@ComponentScan(basePackageClasses = Company.class)
+//@ComponentScan(basePackages = "domain") // Repeating Annotation
+@ComponentScans({
+        @ComponentScan(basePackageClasses = Company.class),
+        @ComponentScan(basePackages = "domain")
+})
 public class Config {
 
     @Bean
@@ -36,7 +40,18 @@ public class Config {
     @Scope(value = WebApplicationContext.SCOPE_REQUEST , proxyMode = ScopedProxyMode.TARGET_CLASS) //instead
     //@RequestScope
     public HelloMessageGenerator getHelloMessageGenerator(){
-        return new HelloMessageGenerator();
+        HelloMessageGenerator helloMessageGenerator = new HelloMessageGenerator();
+        helloMessageGenerator.setMessage("Hi mamad");
+        return helloMessageGenerator;
     }
+
+    @Bean
+    public TaskScheduler taskScheduler(){
+        ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
+        threadPoolTaskScheduler.setPoolSize(5);
+        threadPoolTaskScheduler.setThreadNamePrefix("ThreadPoolTaskSchedule");
+        return threadPoolTaskScheduler;
+    }
+
 
 }

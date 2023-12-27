@@ -2,7 +2,6 @@ package controllers;
 
 import domain.HelloMessageGenerator;
 import jakarta.annotation.Resource;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ScopeController {
 
     @Resource(name = "helloMessageGenerator1")
-    HelloMessageGenerator helloMessageGenerator;
+    private HelloMessageGenerator helloMessageGenerator;
 
     @GetMapping("/request")
     public String getRequestScopeMessage(final Model model){

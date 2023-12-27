@@ -1,14 +1,16 @@
 package domain;
 
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component("companyy")
+@Component(value = "companyy")
 @Getter
 public class Company {
 
-    private Address address;
+    private final Address address;
 
+    @Autowired(required = false)
     public Company(Address address){
         this.address = address;
     }
